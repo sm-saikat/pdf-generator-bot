@@ -1,5 +1,6 @@
 require('dotenv').config()
 const request = require('request');
+const pdfGenerator = require('./utils/pdf-generator')
 
 exports.webhookPost = (req, res) => {  
  
@@ -68,30 +69,21 @@ exports.webhookGet = (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;
-  let count = 0;
-  let start = false;
-  let content = {};
 
   // Checks if the message contains text
-  if (received_message.text === 'start') {
-    start = true;
+  if (received_message.text) {
+
+    let content = received_message.text;
+
+    const pdfUri = pdfGenerator(content);
+
     response = {
-      "text": `কবিতা সেন্ড করেন দাদা`,
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"Stop",
-          "payload":"stop"
+      "attachment":{
+        "type":"file", 
+        "payload":{
+          "url": pdfUri
         }
-      ]
-    }
-  }else if(received_message.text){
-    response = {
-      "text": 'Thank you Dada!'
-    }
-  }else if(received_message.quick_reply.payload === 'stop'){
-    response = {
-      "text": 'আবার আসবেন দাদা'
+      }
     }
   }
 
