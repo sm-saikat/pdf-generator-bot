@@ -112,7 +112,17 @@ function handleMessage(sender_psid, received_message) {
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
+  let response;
 
+  const payload = received_postback.payload;
+
+  if(payload === 'yes'){
+    response = {"text": "Thanks!"};
+  }else if(payload === "no"){
+    response = {"text": "Oops! Send me a another attachment please."}
+  }
+
+  callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
