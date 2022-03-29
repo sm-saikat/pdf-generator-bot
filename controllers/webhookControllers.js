@@ -75,7 +75,14 @@ function handleMessage(sender_psid, received_message) {
   // Checks if the message contains text
   if (received_message.text) {
     response = {
-      "text": `কবিতা সেন্ড করেন দাদা`
+      "text": `কবিতা সেন্ড করেন দাদা`,
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Stop",
+          "payload":"stop"
+        }
+      ]
     }
   }
   
