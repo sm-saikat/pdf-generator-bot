@@ -68,43 +68,25 @@ exports.webhookGet = (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;
-  
+  let count = 0;
+  let start = false;
+  let content = {};
+
   // Checks if the message contains text
-  if (received_message.text) {    
-    // Create the payload for a basic text message, which
-    // will be added to the body of our request to the Send API
+  if (received_message.text === "Start Making PDF") {
+    start = true;
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+      "text": `কবিতার নাম দেন দাদা`
     }
-  } else if (received_message.attachments) {
-    // Get the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
-    response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Is this the right picture?",
-            "subtitle": "Tap a button to answer.",
-            "image_url": attachment_url,
-            "buttons": [
-              {
-                "type": "postback",
-                "title": "Yes!",
-                "payload": "yes",
-              },
-              {
-                "type": "postback",
-                "title": "No!",
-                "payload": "no",
-              }
-            ],
-          }]
-        }
-      }
+  }
+
+  if(start){
+    if(received_message.text){
+      content.title = received_message.text;
     }
-  } 
+  }
+
+  console.log(content.title)
   
   // Send the response message
   callSendAPI(sender_psid, response);
@@ -112,17 +94,7 @@ function handleMessage(sender_psid, received_message) {
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
-  let response;
-
-  const payload = received_postback.payload;
-
-  if(payload === 'yes'){
-    response = {"text": "Thanks!"};
-  }else if(payload === "no"){
-    response = {"text": "Oops! Send me a another attachment please."}
-  }
-
-  callSendAPI(sender_psid, response);
+  
 }
 
 // Sends response messages via the Send API
