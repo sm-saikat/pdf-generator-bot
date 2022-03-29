@@ -7,7 +7,7 @@ module.exports = (text)=>{
         size: 'A4'
     });
     
-    doc.pipe(fs.createWriteStream('output.pdf'))
+    doc.pipe(fs.createWriteStream('public/output.pdf'))
     
     
     doc.font('fonts/kalpurush.ttf').fontSize(18).text(text, {
@@ -16,5 +16,5 @@ module.exports = (text)=>{
     
     doc.end();
 
-    return 'output.pdf'
+    return 'https://fb-chatbot-webhook.herokuapp.com/output.pdf'
 }
