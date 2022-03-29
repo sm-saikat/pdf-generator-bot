@@ -74,6 +74,7 @@ function handleMessage(sender_psid, received_message) {
 
   // Checks if the message contains text
   if (received_message.text === 'start') {
+    start = true;
     response = {
       "text": `কবিতা সেন্ড করেন দাদা`,
       "quick_replies":[
@@ -93,6 +94,8 @@ function handleMessage(sender_psid, received_message) {
       "text": 'আবার আসবেন দাদা'
     }
   }
+
+  console.log(start)
   
   // Send the response message
   callSendAPI(sender_psid, response);
