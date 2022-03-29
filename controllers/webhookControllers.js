@@ -73,20 +73,11 @@ function handleMessage(sender_psid, received_message) {
   let content = {};
 
   // Checks if the message contains text
-  if (received_message.text === "Start Making PDF") {
-    start = true;
+  if (received_message.text) {
     response = {
-      "text": `কবিতার নাম দেন দাদা`
+      "text": `কবিতা সেন্ড করেন দাদা`
     }
   }
-
-  if(start){
-    if(received_message.text){
-      content.title = received_message.text;
-    }
-  }
-
-  console.log(content.title)
   
   // Send the response message
   callSendAPI(sender_psid, response);
