@@ -90,8 +90,9 @@ function handleMessage(sender_psid, received_message) {
   
   // Send the response message
   callSendAPI(sender_psid, response);
+  
   response = {
-    "text": "Developed with ❤ by: SM Saikat"
+    "text": "Developed with ❤ by 'SM Saikat'"
   }
   callSendAPI(sender_psid, response);
 }
