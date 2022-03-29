@@ -76,12 +76,13 @@ function handleMessage(sender_psid, received_message) {
     let content = received_message.text;
 
     const pdfUri = pdfGenerator(content);
+    console.log(pdfUri)
 
     response = {
       "attachment":{
-        "type":"image", 
+        "type":"file", 
         "payload":{
-          "url": "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+          "url": pdfUri
         }
       }
     }
