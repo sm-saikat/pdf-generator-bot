@@ -1,6 +1,6 @@
 require('dotenv').config()
 const request = require('request');
-const pdfGenerator = require('./utils/pdf-generator')
+const pdfGenerator = require('../utils/pdf-generator')
 
 exports.webhookPost = (req, res) => {  
  
