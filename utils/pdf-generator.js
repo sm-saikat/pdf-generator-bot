@@ -24,5 +24,5 @@ module.exports = (text)=>{
     
     doc.end();
 
-    return 'https://fb-chatbot-webhook.herokuapp.com/output.pdf'
+    return 'https://pdf-generator-webhook.herokuapp.com/output.pdf'
 }
