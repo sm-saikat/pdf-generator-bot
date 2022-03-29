@@ -73,7 +73,7 @@ function handleMessage(sender_psid, received_message) {
   let content = {};
 
   // Checks if the message contains text
-  if (received_message.text) {
+  if (received_message.text === 'start') {
     response = {
       "text": `কবিতা সেন্ড করেন দাদা`,
       "quick_replies":[
@@ -83,6 +83,14 @@ function handleMessage(sender_psid, received_message) {
           "payload":"stop"
         }
       ]
+    }
+  }else if(received_message.text){
+    response = {
+      "text": 'Thank you Dada!'
+    }
+  }else if(received_message.quick_reply.payload === 'stop'){
+    response = {
+      "text": 'আবার আসবেন দাদা'
     }
   }
   
