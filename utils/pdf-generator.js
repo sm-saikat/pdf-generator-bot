@@ -10,7 +10,15 @@ module.exports = (text)=>{
     doc.pipe(fs.createWriteStream('public/output.pdf'))
     
     
-    doc.font('fonts/kalpurush.ttf').fontSize(18).text(text, {
+    const title = text.split('\n', 1)[0];
+    const body = text.substring(text.indexOf('\n'), text.length);
+
+
+    doc.font('fonts/kalpurush.ttf').fontSize(20).text(title, {
+        align: 'center'
+    });
+
+    doc.font('fonts/kalpurush.ttf').fontSize(16).text(body, {
         align: 'center'
     })
     
