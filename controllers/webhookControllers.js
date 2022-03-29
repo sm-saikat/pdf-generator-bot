@@ -78,7 +78,6 @@ function handleMessage(sender_psid, received_message) {
     const pdfUri = pdfGenerator(content);
 
     response = {
-      "text": "Click to Download this",
       "attachment":{
         "type":"image", 
         "payload":{
